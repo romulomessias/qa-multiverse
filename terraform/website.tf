@@ -8,16 +8,20 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  profile = "romalo"
   region  = "us-east-1"
+}
+variable "subdomain" {
+  type        = string
+  description = "The subdomain of your app"
 }
 
 locals {
   s3_origin_id = "app-prod"
   environment  = "production"
   domain = {
-    root = "example.com"
-    sub  = "app"
+    root = "romulomessias.dev"
+    sub  = "${var.subdomain}"
   }
 }
 

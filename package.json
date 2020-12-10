@@ -8,7 +8,10 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack --profile --progress",
-    "test:unit": "jest --updateSnapshot --config ./test/jest.config.js"
+    "test:unit": "jest --updateSnapshot --config ./test/jest.config.js",
+    "terraform:validate": "terraform validate",
+    "terraform:plan": "cd terraform && terraform plan -var='subdomain=123'",
+    "terraform:apply": "TF_CLI_ARGS_subdomain='hello' terraform apply"
   },
   "dependencies": {
     "react": "^16.13.1",
