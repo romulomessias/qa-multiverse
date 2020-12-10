@@ -7,10 +7,10 @@ terraform {
   }
 }
 
-provider "aws" {
-  profile = "romalo"
-  region  = "us-east-1"
-}
+# provider "aws" {
+#   profile = "romalo"
+#   region  = "us-east-1"
+# }
 variable "subdomain" {
   type        = string
   description = "The subdomain of your app"
