@@ -8,9 +8,9 @@ terraform {
 }
 
 provider "aws" {
-#   profile = "romalo"
   region  = "us-east-1"
 }
+
 variable "subdomain" {
   type        = string
   description = "The subdomain of your app"
@@ -21,7 +21,7 @@ locals {
   environment  = "production"
   domain = {
     root = "romulomessias.dev"
-    sub  = "${var.subdomain}"
+    sub  = var.subdomain
   }
 }
 
