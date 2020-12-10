@@ -49,27 +49,26 @@ jobs:
     #   # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     #   run: terraform apply -auto-approve
   
-  # deploy:
-  #   name: 'Deploy'
-  #   runs-on: ubuntu-latest
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
     
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
+    strategy:
+      matrix:
+        node-version: [12.x]
 
-  #   steps:
-  #     # Checkout the repository to the GitHub Actions runner
-  #     - name: Checkout
-  #     - uses: actions/checkout@v2
+    steps:
+    - name: Checkout
+    - uses: actions/checkout@v2
 
-  #     - name: Use Node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #     - run: yarn install
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install
     
-  #     - name: Build
-  #     - run: yarn build
+    - name: Build
+    - run: yarn build
     
   #     - name: Archive code coverage results
   #       uses: actions/upload-artifact@v2
