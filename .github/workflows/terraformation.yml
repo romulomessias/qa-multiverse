@@ -109,6 +109,6 @@ jobs:
 
     - run: echo ${{ github.run_id }}.romulomessias.dev
 
-    - name: Copy files to the test website with the AWS CLI
+    - name: Sync build to S3
       run: |
         aws s3 sync dist s3://${{ github.run_id }}.romulomessias.dev
