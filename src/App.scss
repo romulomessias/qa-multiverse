@@ -1,0 +1,28 @@
+.app {
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fff;
+
+    header {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 100;
+    }
+
+    &__container {
+        padding: 1px;
+        border-radius: 8px;
+        // background: linear-gradient(90deg, #3acfd5 0%, #3a4ed5 100%);
+        box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.15);
+        transition: background 0.2s ease;
+        width: 256px;
+        height: max-content;
+        margin: auto;
+    }
+}

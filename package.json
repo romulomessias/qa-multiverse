@@ -1,0 +1,60 @@
+{
+  "name": "react-whithout-cra",
+  "version": "1.2.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Romulo Messias",
+  "license": "ISC",
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack --profile --progress",
+    "test:unit": "jest --updateSnapshot --config ./test/jest.config.js"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^11.0.4",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.8",
+    "@types/react": "^16.9.51",
+    "@types/react-dom": "^16.9.7",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "compression": "^1.7.4",
+    "compression-webpack-plugin": "^6.0.3",
+    "css-loader": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^3.0.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-loader": "4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.5.2",
+    "mini-css-extract-plugin": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.3",
+    "source-map-loader": "^1.1.1",
+    "terser-webpack-plugin": "^4.2.3",
+    "ts-jest": "^26.4.1",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack": "5.0.0",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "4.0.0",
+    "webpack-pwa-manifest": "^4.2.0",
+    "workbox-webpack-plugin": "^5.1.4",
+    "worker-plugin": "^5.0.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}
