@@ -99,7 +99,18 @@ jobs:
 
     - run: cat dist/main.js
 
-    - name: AWS CLI
-      uses: ItsKarma/aws-cli@v1.70.0
+    # - name: AWS CLI
+    #   uses: ItsKarma/aws-cli@v1.70.0
 
-    - run: aws iam get-user
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+    - run: echo ${{ steps.get_version.outputs.version }}
+
+    - name: Copy files to the test website with the AWS CLI
+      run: |
+        aws s3 sync ./dist/**/* s3://poc-multiples-links
