@@ -17,31 +17,31 @@ jobs:
 
     steps:
     # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Tag Version
-      id: get_version
-      uses: battila7/get-version-action@v2
+      - name: Tag Version
+        id: get_version
+        uses: battila7/get-version-action@v2
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      working-directory: ./terraform
-      run: terraform init
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      working-directory: ./terraform
-      run: terraform fmt -check
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: terraform init
 
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      working-directory: ./terraform
-      run: AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} terraform plan -var='subdomain=${{ steps.get_version.outputs.version }}'
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: Terraform Format
+        working-directory: ./terraform
+        run: terraform fmt -check
+
+      # Generates an execution plan for Terraform
+      - name: Terraform Plan
+        working-directory: ./terraform
+        run: AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} terraform plan -var='subdomain=${{ steps.get_version.outputs.version }}'
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -57,26 +57,25 @@ jobs:
       matrix:
         node-version: [12.x]
 
-    defaults:
-      run:
-        shell: bash
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn install
-    
-    - name: Build
-    - run: yarn build
-    
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v2
-      with:
-          name: code-coverage-report
-          path: coverage/**/*
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+      - uses: actions/checkout@v2
 
-    - name: AWS CLI
-      uses: ItsKarma/aws-cli@v1.70.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn install
+    
+      - name: Build
+      - run: yarn build
+    
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+            name: code-coverage-report
+            path: coverage/**/*
+
+#       - name: AWS CLI
+#         uses: ItsKarma/aws-cli@v1.70.0
