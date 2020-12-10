@@ -97,7 +97,7 @@ jobs:
         name: build artifact
         path: dist/
 
-    - run: cat 
-    
+    - run: cat dist/
+
     - name: AWS CLI
       uses: ItsKarma/aws-cli@v1.70.0
