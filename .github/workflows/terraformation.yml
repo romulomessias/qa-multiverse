@@ -78,8 +78,11 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       working-directory: ./terraform
-      run: 
       run: terraform fmt -check
+
+    - name: Region
+      working-directory: ./terraform
+      run: echo "$AWS_DEFAULT_REGION"
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
