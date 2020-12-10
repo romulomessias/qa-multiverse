@@ -26,9 +26,9 @@ locals {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket        = "${local.domain.sub}.${local.domain.root}"
-  acl           = "public-read"
-  policy        = <<POLICY
+  bucket = "${local.domain.sub}.${local.domain.root}"
+  acl    = "public-read"
+  policy = <<POLICY
   {
     "Version": "2012-10-17",
       "Statement": [
