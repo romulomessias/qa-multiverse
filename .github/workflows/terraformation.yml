@@ -49,8 +49,8 @@ jobs:
     #   # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     #   run: terraform apply -auto-approve
   
-  deploy:
-    name: Deploy
+  Build:
+    name: Build
     runs-on: ubuntu-latest
     
     strategy:
@@ -72,11 +72,11 @@ jobs:
     - name: Build
       run: yarn build
     
-  #     - name: Archive code coverage results
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #           name: code-coverage-report
-  #           path: coverage/**/*
+    - name: Publish build artifact
+      uses: actions/upload-artifact@v2
+      with:
+          name: build artifact
+          path: dist/**/*
 
 #       - name: AWS CLI
 #         uses: ItsKarma/aws-cli@v1.70.0
