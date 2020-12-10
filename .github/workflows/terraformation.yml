@@ -49,6 +49,14 @@ jobs:
     #   # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       working-directory: ./terraform
       run: AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} terraform apply -auto-approve -var='subdomain=${{ github.run_id }}'
+    
+    - name: Publish terraform.tfstate
+    #   # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      # working-directory: ./terraform
+      uses: actions/upload-artifact@v2
+      with:
+          name: terraform.tfstate artifact
+          path: terraform/terraform.tfstate
   
   build:
     name: Build
@@ -112,3 +120,8 @@ jobs:
     - name: Sync build to S3
       run: |
         aws s3 sync dist s3://${{ github.run_id }}.romulomessias.dev
+    
+    - name: Add url to commit
+      uses: peter-evans/commit-comment@v1
+      with:
+        body: ${{ github.run_id }}.romulomessias.dev
