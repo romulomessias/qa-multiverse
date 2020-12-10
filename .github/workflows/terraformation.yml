@@ -110,7 +110,8 @@ jobs:
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
     - run: echo ${{ steps.get_version.outputs.version }}
+    - run: cat dist/main.js
 
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync ./dist/**/* s3://poc-multiples-links
+        aws s3 sync dist s3://poc-multiples-links
