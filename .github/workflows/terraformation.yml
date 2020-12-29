@@ -124,4 +124,4 @@ jobs:
     - name: Add url to commit
       uses: peter-evans/commit-comment@v1
       with:
-        body: ${{ github.run_id }}.romulomessias.dev
+        body: "[${{ github.run_id }}.romulomessias.dev]: ${{ github.run_id }}.romulomessias.dev"
