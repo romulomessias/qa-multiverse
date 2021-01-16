@@ -1,1 +1,3 @@
-### Simple React PWA Template with Typescript (without create react app)
+### QA Multiverse
+
+simple prove of concept to generate unique url for a tag using github actions and terraform
